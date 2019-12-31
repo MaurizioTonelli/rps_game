@@ -22,6 +22,66 @@
                     break;
             }
         }
+
+        function playRound(computer_selection, user_selection){
+            computer_selection=computer_selection.toLowerCase();
+            user_selection=user_selection.toLowerCase();
+
+            if(computer_selection==user_selection){
+                return "It's a tie";
+            }
+            if(user_selection!="rock" && user_selection!="paper" && user_selection!="scissors"){
+                return "bad selection";
+            }
+            if(computer_selection=="rock"){
+                if(user_selection=="paper"){
+                    return "Player wins";
+                }
+                if(user_selection=="scissors"){
+                    return "Computer wins";
+                }
+            }else if(computer_selection=="paper"){         
+                if(user_selection=="rock"){
+                    return "Computer wins";
+                }
+                if(user_selection=="scissors"){
+                    return "Player wins";
+                }
+            }else if(computer_selection=="scissors"){      
+                if(user_selection=="rock"){
+                    return "Player wins";
+                }
+                if(user_selection=="paper"){
+                    return "Computer wins";
+                }
+            }
+        }
+
+        function game(){
+            let user_score=0;
+            let computer_score=0;
+            for(let i=0; i<5; ++i){
+                let user_selection = prompt("choose tool");
+                let computer_selection = computerPlay();
+                let result = playRound(user_selection, computer_selection);
+                console.log(result);
+                if(result=="Player wins"){
+                    ++user_score;
+                }else if(result=="Computer wins"){
+                    ++computer_score;
+                }else{
+                    --i;
+                }
+                console.log(user_score+" - "+computer_score);
+            }
+            if(user_score>computer_score){
+                console.log("Congratulations");
+            }else{
+                console.log("You lost");
+            }
+        }
+        game();
+
     </script>
 </body>
 
